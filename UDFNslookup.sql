@@ -22,7 +22,7 @@ CREATE FUNCTION nslookup(VARCHAR(255))
  *   IP address in x.x.x.x format.
  * RETURNS the string that conatains the hostname.
  */
-CREATE FUNCTION reverseNslookup(VARCHAR(255))
+CREATE FUNCTION reverse_Nslookup(VARCHAR(255))
   RETURNS VARCHAR(255)
   FENCED
   EXTERNAL NAME 'UDFNSLOOKUPJAR:UDFNslookup.resolveName'
