@@ -1,6 +1,11 @@
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * Performs the basic nslookup operations on a given address (IP or hostname.)
+ *
+ * @author Andres Gomez
+ */
 public class UDFNslookup {
 
     /**
@@ -51,3 +56,4 @@ public class UDFNslookup {
         UDFNslookup.resolveIP(args[0]);
     }
 }
+
