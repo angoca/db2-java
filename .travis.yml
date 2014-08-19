@@ -46,6 +46,7 @@ install:
   - mvn
   - db2 "call sqlj.install_jar('file:${TRAVIS_BUILD_DIR}/target/db2-java-1-SNAPSHOT.jar','NSLOOKUP')"
   - db2 -f ${TRAVIS_BUILD_DIR}/src/main/sql/UDFNslookup.sql
+  - db2 "SET PATH = SYSTEM PATH, USER"
   - db2 -f ${TRAVIS_BUILD_DIR}/src/test/sql/Tests_NSLOOKUP.sql
  
 script:
