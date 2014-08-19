@@ -1,3 +1,13 @@
+--#SET TERMINATOR ;
+
+/**
+ * Tests for NS LOOK UP function.
+ *
+ * Version: 2014-08-18
+ * Author: Andres Gomez Casanova (AngocA)
+ * Made in COLOMBIA.
+ */
+
 /**
  * Resolves a given IP and returns the name of the server.
  *
@@ -5,10 +15,10 @@
  *   IP address in x.x.x.x format.
  * RETURNS the string that conatains the hostname.
  */
-CREATE FUNCTION nslookup(VARCHAR(255))
+CREATE FUNCTION NSLOOKUP(VARCHAR(255))
   RETURNS VARCHAR(255)
   FENCED
-  EXTERNAL NAME 'UDFNSLOOKUPJAR:UDFNslookup.resolveIP'
+  EXTERNAL NAME 'NSLOOKUP:UDFNslookup.resolveIP'
   NOT VARIANT
   NO SQL
   PARAMETER STYLE java
@@ -19,13 +29,13 @@ CREATE FUNCTION nslookup(VARCHAR(255))
  * Resolves a given name and returns the IP associated to the server.
  *
  * IN
- *   IP address in x.x.x.x format.
+ *   HOSTNAME Name of the server.
  * RETURNS the string that conatains the hostname.
  */
-CREATE FUNCTION reverse_Nslookup(VARCHAR(255))
+CREATE FUNCTION REVERSE_NSLOOKUP(VARCHAR(255))
   RETURNS VARCHAR(255)
   FENCED
-  EXTERNAL NAME 'UDFNSLOOKUPJAR:UDFNslookup.resolveName'
+  EXTERNAL NAME 'NSLOOKUP:UDFNslookup.resolveName'
   NOT VARIANT
   NO SQL
   PARAMETER STYLE java
