@@ -48,9 +48,6 @@ install:
   - db2 "SET PATH = SYSTEM PATH, USER"
   - db2 "call sqlj.install_jar('file:${TRAVIS_BUILD_DIR}/target/db2-java-1-SNAPSHOT.jar','NSLOOKUP')"
   - db2 -f ${TRAVIS_BUILD_DIR}/src/main/sql/UDFNslookup.sql
-  #- db2 values current path
-  #- db2 values current schema
-  #- db2 "select funcschema, funcname from syscat.functions where funcschema not like 'SYS%'"
   - db2 -f ${TRAVIS_BUILD_DIR}/src/test/sql/Tests_NSLOOKUP.sql
  
 script:
@@ -61,6 +58,6 @@ after_failure:
   # If there is any error, shows the logs
   - cat /home/db2inst1/sqllib/db2dump/db2diag.log
   - db2 "call logadmin.logs"
-  - db2 "select * from DB2UNIT_EXECUTION_REPORTS"
-  - db2 "select * from DB2_HASH.REPORT_TESTS"
+  - db2 "select * from DB2UNIT_1.DB2UNIT_EXECUTION_REPORTS"
+  - db2 "select * from NSLOOKUP.REPORT_TESTS"
 
