@@ -39,18 +39,18 @@ public class UDFNslookup {
     /**
      * Returns the IP of the given hostname.
      * 
-     * @param host
+     * @param hostname
      *            Name of the host.
      * @return IP address.
      */
-    public static String resolveName(String host) {
+    public static String resolveName(String hostname) {
         String ret = null;
-        if (host != null) {
-            host = host.trim();
-            if (host.compareTo("") != 0) {
+        if (hostname != null) {
+            hostname = hostname.trim();
+            if (hostname.compareTo("") != 0) {
                 InetAddress inetAddress;
                 try {
-                    inetAddress = InetAddress.getByName(host);
+                    inetAddress = InetAddress.getByName(hostname);
                     ret = inetAddress.getHostAddress();
                 } catch (final UnknownHostException e) {
                     ret = "Invalid";
