@@ -4,18 +4,13 @@ before_install:
   - sudo ./travis/update.sh > /dev/null &
 
   # Retrieves and extracts the DB2 binaries
-  - cd /tmp
-  - wget https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/04jdl/0/Xa.2/Xb.jusyLTSp44S03Ud2hqNz8SvywlJcj6dHjPURNh0iCvzE79MnIkpREqrUv_U/Xc.CM/IM/04jdl/0/v10.5fp3a_linuxx64_server.tar.gz/Xd./Xf.LPR.D1vk/Xg.7708245/Xi.habanero/XY.habanero/XZ.6Ndokz98qNHthR6iSKORF6OAY0c/v10.5fp3a_linuxx64_server.tar.gz ; tar zxf v10.5fp3a_linuxx64_server.tar.gz
+  - cd /tmp ; wget https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/04jdl/0/Xa.2/Xb.jusyLTSp44S03Ud2hqNz8SvywlJcj6dHjPURNh0iCvzE79MnIkpREqrUv_U/Xc.CM/IM/04jdl/0/v10.5fp3a_linuxx64_server.tar.gz/Xd./Xf.LPR.D1vk/Xg.7708245/Xi.habanero/XY.habanero/XZ.6Ndokz98qNHthR6iSKORF6OAY0c/v10.5fp3a_linuxx64_server.tar.gz ; tar zxf v10.5fp3a_linuxx64_server.tar.gz
 
   # Retrieves and extract log4db2
-  - cd
-  - wget https://github.com/angoca/log4db2/releases/download/1-Beta-A/log4db2.tar.gz
-  - tar zxvf log4db2.tar.gz
+  - cd ; wget https://github.com/angoca/log4db2/releases/download/1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
 
   # Retrieves and extract db2unit
-  - cd
-  - wget https://github.com/angoca/db2unit/releases/download/db2unit-1-Beta/db2unit.tar.gz
-  - tar zxvf db2unit.tar.gz
+  - cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1-Beta/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
 
 
   # INSTALL
@@ -29,10 +24,9 @@ before_install:
   - sudo apt-get install libapr1-dev
   - sudo apt-get install libaprutil1-dev -y
 
-  # Install DB2 and creates an instance (Response file)
-  - cd /tmp/server
   # Checks the prerequisites
-  - ./db2prereqcheck -i
+  - cd /tmp/server ; ./db2prereqcheck -i
+  # Install DB2 and creates an instance (Response file)
   - sudo ./db2setup -r ${TRAVIS_BUILD_DIR}/travis/db2.rsp || cat /tmp/db2setup.log
   # Creates the database
   - sudo su - db2inst1 -c "db2 create db tools"
@@ -46,8 +40,7 @@ before_install:
   - cd ; cd db2unit ; . ./install 
 
 install:
-  - cd ${TRAVIS_BUILD_DIR}
-  - mvn
+  - cd ${TRAVIS_BUILD_DIR} ; mvn
   - db2 "SET CURRENT SCHEMA CURRENT USER"
   - db2 "SET PATH = SYSTEM PATH, USER"
   - db2 "call sqlj.install_jar('file:${TRAVIS_BUILD_DIR}/target/db2-java-1-SNAPSHOT.jar','NSLOOKUP')"
