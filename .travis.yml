@@ -21,8 +21,6 @@ before_install:
   - sudo apt-get -y install libpam0g:i386
   - sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
   - sudo apt-get install numactl
-  - sudo apt-get install libapr1-dev
-  - sudo apt-get install libaprutil1-dev -y
 
   # Checks the prerequisites
   - cd /tmp/server ; ./db2prereqcheck -i
@@ -48,7 +46,6 @@ install:
   - db2 -f ${TRAVIS_BUILD_DIR}/src/test/sql/Tests_NSLOOKUP.sql
  
 script:
-  # Executes the tests twice.
   - db2 -r /tmp/db2unit.output -v "call db2unit.run_suite('NSLOOKUP')" ; bash -c "exit $(tail -1 /tmp/db2unit.output | awk '/Return Status/ {print $4}')"
 
 after_failure:
