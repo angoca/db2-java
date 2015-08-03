@@ -26,7 +26,7 @@ before_install:
   - sudo apt-get install numactl
 
   # Checks the prerequisites
-  - cd /tmp/server ; ./db2prereqcheck -i
+  - cd /tmp/server ; ./db2prereqcheck -i -l
   # Install DB2 and creates an instance (Response file)
   - sudo ./db2setup -r ${TRAVIS_BUILD_DIR}/travis/db2.rsp || cat /tmp/db2setup.log
   # Creates the database
