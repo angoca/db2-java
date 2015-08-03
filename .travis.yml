@@ -4,10 +4,10 @@ before_install:
   - sudo ./travis/update.sh > /dev/null &
 
   # Retrieves and extract log4db2
-  - cd ; wget https://github.com/angoca/log4db2/releases/download/1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
+  - cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
 
   # Retrieves and extract db2unit
-  - cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1-Beta/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
+  - cd ; wget https://github.com/angoca/db2unit/releases/download/db2unit-1/db2unit.tar.gz ; tar zxvf db2unit.tar.gz
 
 
   # INSTALL
