@@ -3,9 +3,6 @@ before_install:
   - mvn > /dev/null &
   - sudo ./travis/update.sh > /dev/null &
 
-  # Retrieves and extracts the DB2 binaries
-  - cd /tmp ; wget https://delivery04.dhe.ibm.com/sdfdl/v2/sar/CM/IM/04jdl/0/Xa.2/Xb.jusyLTSp44S03Ud2hqNz8SvywlJcj6dHjPURNh0iCvzE79MnIkpREqrUv_U/Xc.CM/IM/04jdl/0/v10.5fp3a_linuxx64_server.tar.gz/Xd./Xf.LPR.D1vk/Xg.7708245/Xi.habanero/XY.habanero/XZ.6Ndokz98qNHthR6iSKORF6OAY0c/v10.5fp3a_linuxx64_server.tar.gz ; tar zxf v10.5fp3a_linuxx64_server.tar.gz
-
   # Retrieves and extract log4db2
   - cd ; wget https://github.com/angoca/log4db2/releases/download/1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
 
@@ -17,10 +14,14 @@ before_install:
 
   # Install the required libraries
   - sudo apt-get update -qq
-  - sudo apt-get -y install libaio1 ksh libstdc++6-4.4-pic libstdc++6-4.4-dev libstdc++5 rpm
+  - sudo apt-get -y install libaio1 ksh libstdc++6-4.4-pic libstdc++6-4.4-dev libstdc++5 rpm curl aria2
   - sudo apt-get -y install libpam0g:i386
   - sudo ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
   - sudo apt-get install numactl
+
+  # Download DB2 binaries
+  - curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link-expc.md -s > link ; cat link | tail -1 > link2 ; cat link2
+  - aria2c -x 16 `cat link2` ; fi"
 
   # Checks the prerequisites
   - cd /tmp/server ; ./db2prereqcheck -i
