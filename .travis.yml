@@ -8,7 +8,7 @@ before_install:
   # Download DB2 binaries
   - cd /tmp
   - curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link-expc.md -s > link ; cat link | tail -1 > link2 ; cat link2
-  - aria2c -x 16 `cat link2`
+  - aria2c -x 16 `cat link2` ; tar zvxf v10.5_linuxx64_expc.tar.gz
 
   # Retrieves and extract log4db2
   - cd ; wget https://github.com/angoca/log4db2/releases/download/log4db2-1-Beta-A/log4db2.tar.gz ; tar zxvf log4db2.tar.gz
