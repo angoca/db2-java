@@ -6,6 +6,7 @@ before_install:
   - sudo ./travis/update.sh > /dev/null &
 
   # Download DB2 binaries
+  - cd /tmp
   - curl --url https://raw.githubusercontent.com/wiki/angoca/db2-docker/db2-link-expc.md -s > link ; cat link | tail -1 > link2 ; cat link2
   - aria2c -x 16 `cat link2`
 
@@ -26,7 +27,7 @@ before_install:
   - sudo apt-get install numactl
 
   # Checks the prerequisites
-  - cd /tmp/server ; ./db2prereqcheck -i -l
+  - cd /tmp/expc ; ./db2prereqcheck -i -l
   # Install DB2 and creates an instance (Response file)
   - sudo ./db2setup -r ${TRAVIS_BUILD_DIR}/travis/db2.rsp || cat /tmp/db2setup.log
   # Creates the database
